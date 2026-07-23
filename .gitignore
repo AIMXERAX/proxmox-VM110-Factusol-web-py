@@ -1,0 +1,90 @@
+# ==============================================
+# GITIGNORE PARA PROYECTO FACTUSOL-MYSQL
+# ==============================================
+
+# Archivos sensibles - NUNCA subir al repositorio
+.env
+.env-*
+*.env
+**/.env
+**/.env-*
+**/*.env
+
+# Logs y archivos temporales
+*.log
+monitor.log
+*.tmp
+*.temp
+
+# Archivos de estado y sincronización
+estado_sincronizacion.json
+estado_monitor_accdb.json
+
+# Bases de datos locales
+*.db
+*.sqlite
+*.sqlite3
+
+# Archivos SQL generados
+tablas_aim_incremental.sql
+tablas_aim.sql
+
+# Archivos de backup
+*.accdb
+*.laccdb
+*.mdb
+*.ldb
+
+# Directorios de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Entornos virtuales
+.venv/
+venv/
+pyvenv.cfg
+Include/
+Lib/
+Scripts/
+
+# IDE y editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Salidas generadas
+logs/
+log.txt
+Export/
+.export_temp/
+
+# Empaquetado
+*.spec
+
+# Archivos de configuración específicos del usuario
+config_local.py

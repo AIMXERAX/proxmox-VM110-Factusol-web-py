@@ -144,15 +144,9 @@ try:
                 elif "datetime" in str(dtype):
                     sql_type = "DATE"
                 elif df[col_name].dtype == "object":
-                    # Asumimos que es texto u objeto mixto
-                    temp_series = df[col_name].dropna().astype(str)
-                    max_len = temp_series.str.len().max()
-                    if pd.isna(max_len) or max_len < 50:
-                        max_len = 50
-                    if max_len > 255:
-                        sql_type = "TEXT"
-                    else:
-                        sql_type = f"VARCHAR({max_len})"
+                    # Usar TEXT evita que cambios en la longitud de Access
+                    # obliguen a reconstruir el tipo VARCHAR generado.
+                    sql_type = "TEXT"
                 else:
                     # Caso genérico: fallback
                     sql_type = "TEXT"
@@ -171,15 +165,6 @@ try:
                 # Para columnas de texto largas usamos prefijo 191 (compatible con utf8mb4).
                 if index_col_type.startswith("TEXT"):
                     f.write(f"CREATE INDEX `{index}` ON `{dest_table}` (`{index}`(191));\n")
-                elif index_col_type.startswith("VARCHAR("):
-                    try:
-                        largo = int(index_col_type.replace("VARCHAR(", "").replace(")", ""))
-                    except Exception:
-                        largo = 191
-                    if largo > 191:
-                        f.write(f"CREATE INDEX `{index}` ON `{dest_table}` (`{index}`(191));\n")
-                    else:
-                        f.write(f"CREATE INDEX `{index}` ON `{dest_table}` (`{index}`);\n")
                 else:
                     f.write(f"CREATE INDEX `{index}` ON `{dest_table}` (`{index}`);\n")
         f.write(fin)        

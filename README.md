@@ -40,6 +40,12 @@ aim_incremental.bat --force-full
 reconstruir_estructura.bat
 ```
 
+La estructura SQL generada asigna `TEXT` a los campos de texto procedentes de
+Access, evitando limites `VARCHAR(n)` basados en la longitud de los datos
+actuales. Los campos numericos y de fecha conservan los tipos `INT`, `DECIMAL`
+y `DATE`. Los indices sobre columnas `TEXT` se crean con el prefijo `(191)` para
+mantener compatibilidad con MySQL y MariaDB.
+
 ### Comprobar conexion ODBC a Access
 
 ```cmd

@@ -21,7 +21,7 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent
 load_dotenv(BASE_DIR / ".env")
-DEFAULT_DB_PATH = Path(r"C:\Python\db\Servicios.db")
+DEFAULT_DB_PATH = BASE_DIR / "db" / "Servicios.db"
 DB_PATH = Path(os.getenv("SERVICIOS_DB_PATH", str(DEFAULT_DB_PATH))).resolve()
 DB_DIR = DB_PATH.parent
 LOGS_DIR = BASE_DIR / "logs"
